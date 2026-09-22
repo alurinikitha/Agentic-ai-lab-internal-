@@ -126,6 +126,193 @@ Through this experiment, I learned how to:
 * Add a simple web interface.
 * Compare single-prompt summarization with prompt chaining.
 
+  # SQL ReAct Agent with Tool Use
+
+---
+
+## Overview
+
+This project demonstrates how a ReAct-based AI agent can interact with a database using database tools. The agent accepts questions in natural language, checks the database structure, generates SQL queries, executes them, and provides the answer.
+
+---
+
+## Objective
+
+The objective of this experiment is to understand how AI agents can use external tools to interact with databases and answer questions using real database information.
+
+---
+
+## ReAct Agent Pipeline
+
+1. Understand Question
+
+   * Identify what information the user is asking for.
+
+2. Check Database
+
+   * List available tables.
+   * Check the required table schema.
+
+3. Generate SQL
+
+   * Create a SQL `SELECT` query based on the user's question.
+
+4. Execute Query
+
+   * Execute the generated query using the database tool.
+   * Observe the returned results.
+
+5. Generate Answer
+
+   * Use the query results to provide a simple natural-language answer.
+
+### Pipeline
+
+```text
+User Question
+↓
+Understand Question
+↓
+List Tables
+↓
+Check Schema
+↓
+Generate SQL Query
+↓
+Execute SQL
+↓
+Observe Result
+↓
+Final Answer
+```
+
+---
+
+## Technologies Used
+
+* Python
+* Google Gemini API
+* LangChain
+* LangGraph
+* SQLite
+* SQL
+* Git
+* GitHub
+* Visual Studio Code
+
+---
+
+## Project Structure
+
+```text
+sql-react-agent/
+│
+├── agent.py
+├── database.py
+├── tools.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## How It Works
+
+The program uses a ReAct-style agent connected to database tools.
+
+The agent can use the following tools:
+
+* `list_tables` – lists the available database tables.
+* `get_schema` – provides the structure of a selected table.
+* `execute_sql` – executes a read-only SQL `SELECT` query.
+
+The agent decides which tools are needed to answer the user's question. The result from one tool can be used by the agent to decide the next action.
+
+---
+
+## How to Run
+
+### 1. Install the Required Packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Set Your Gemini API Key
+
+Create a `.env` file in the project folder:
+
+```env
+GEMINI_API_KEY=your-gemini-api-key
+```
+
+Do not upload or share your API key publicly.
+
+### 3. Create the Database
+
+```bash
+python database.py
+```
+
+### 4. Run the Agent
+
+```bash
+python agent.py
+```
+
+Then enter a question when prompted.
+
+---
+
+## Example Input
+
+```text
+How many employees are there?
+```
+
+Other example questions:
+
+```text
+Who has the highest salary?
+```
+
+```text
+How many employees work in Engineering?
+```
+
+```text
+What is the average salary of Engineering employees?
+```
+
+---
+
+## Learning Outcome
+
+Through this experiment, I learned how to:
+
+* Build a ReAct-based AI agent.
+* Connect an AI agent with database tools.
+* Use natural language to query a database.
+* Generate and execute SQL queries using an AI agent.
+* Pass tool results back to the agent.
+* Use Gemini with LangChain.
+* Work with SQLite databases.
+* Manage an AI project using Git and GitHub.
+
+---
+
+## Future Improvements
+
+* Add a Streamlit web interface.
+* Add MySQL or PostgreSQL support.
+* Add more database tools.
+* Add SQL query validation.
+* Add error handling for SQL queries.
+* Add data visualization.
+* Add query history.
+
+
 ## Author
 
 Nikitha Aluri
